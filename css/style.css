@@ -1,0 +1,36 @@
+#draggable {
+    position: relative;
+	width: 130px;
+    height: 130px;
+    background:#999;
+    padding: 0px;
+    float: left;
+    margin: 20px;
+    border: 3px solid #8AC007;
+    top: 20px;
+    border-radius: 10px;
+	
+  }
+
+  #droppable {
+  top: 40px;
+  float: left;
+  width: 130px;
+  height: 130px;
+  padding: 0px;
+  padding-bottom: 0;
+  border: 2px solid #333;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  margin: 20px;
+  background: #8AC007;
+  border-top-left: 400px;
+  text-align: center;
+  }
+
+
+
+
+
+

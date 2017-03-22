@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>droppable demo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+  
+  </head>
+
+<body>
+
+ 
+ <div id="content">
+ <div id="flag">
+ <div id="draggable" id="Drag_1"><img src = "img/Algeria.jpg" width="130px;" height="130px;"></div>
+ <div id="draggable" id="flag"><img src = "img/France.jpg" width="130px;" height="130px;"></div>
+ <div id="draggable" id="flag"><img src = "img/india.jpg" width="130px;" height="130px;"></div>
+ <div id="draggable" id="flag"><img src = "img/England.jpg" width="130px;" height="130px;"></div>
+ <div id="draggable" id="flag"><img src = "img/Malaysia.jpg" width="130px;" height="130px;"></div>
+ <div id="draggable" id="flag"><img src = "img/Sweden.jpg" width="130px;" height="130px;"></div>
+ <div id="draggable" id="flag"><img src = "img/Zambia.jpg" width="130px;" height="130px;"></div>
+ </div>
+
+
+ 
+ <div id="flag1">
+ <div id="droppable" id="flag">Zambia</div>
+ <div id="droppable" id="flag">France</div>
+ <div id="droppable" id="flag">Sweden</div>
+ <div id="droppable" id="flag">india</div>
+ <div id="droppable" id="flag">Algeria</div>
+ <div id="droppable" id="flag">Malaysia</div>
+ <div id="droppable" id="flag">England</div>
+ </div>
+
+
+<script type="text/javascript">
+$(init);
+    var correctCards = 0;
+    function init()
+    {
+
+      // Hide the success message
+        $('#successMessage').hide();
+        $('#successMessage').css
+        (
+          {
+            left: '580px',
+            top: '250px',
+            width: 0,
+            height: 0
+          }
+        );
+
+         // Reset the game
+        correctCards = 0;
+        $("#flag").html();
+        $("#flag1").html();
+
+
+      $("#flag img").draggable
+      (
+        {
+          containment: '#content',
+          stack: '#flag img',
+          cursor: 'move',
+          revert: true
+        }
+      )
+
+      $("#flag1 div").droppable
+      (
+        {
+          accept: '#flag1 img',
+          hoverClass: 'hovered',
+          drop: handleCardDrop
+        }
+      )
+
+    }
+      function handleCardDrop( event, ui )
+      {
+
+        var DropId = $(this).attr( 'id' );
+        var DragId = ui.draggable.attr( 'id' );
+        var aDrop = parseInt(DropId.slice(5));
+        var bDrag = DragId.slice(5);
+
+        if ( aDrop == bDrag )
+        {
+
+
+          ui.draggable.draggable( 'disable' );
+          $(this).droppable( 'disable' );
+          ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
+          ui.draggable.draggable( 'option', 'revert', false );
+          correctCards++;
+        }
+
+
+        if ( correctCards == 8 )
+        {
+          $('#successMessage').show();
+          $('#successMessage').animate
+          (
+            {
+              left: '380px',
+              top: '200px',
+              width: '400px',
+              height: '100px',
+              opacity: 1
+            }
+          );
+        }
+      }
+
+
+
+</script>
+
+</div>
+ 
+</body>
+
+</html>
+
